@@ -1,6 +1,8 @@
 # PesterMatchHashtable
 This module provides additional assertions for [Pester](https://github.com/pester/Pester) to help with testing hash table contents
 
+Also see [PesterMatchArray](https://github.com/stuartleeks/PesterMatchArray) for array assertions.
+
 ## Installation
 
 ### PowerShell Gallery
