@@ -3,6 +3,8 @@ This module provides additional assertions for [Pester](https://github.com/peste
 
 Also see [PesterMatchArray](https://github.com/stuartleeks/PesterMatchArray) for array assertions.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/50vdbyyjaorv8c6v/branch/master?svg=true)](https://ci.appveyor.com/project/stuartleeks/pestermatchhashtable/branch/master)
+
 ## Installation
 
 ### PowerShell Gallery
