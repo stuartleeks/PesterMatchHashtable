@@ -41,6 +41,11 @@ Describe "MatchHashtable examples" {
 
 ## Release Notes
 
+### Version 0.3.0 27th July 2017
+Pushed to PowerShell Gallery
+
+Updated to work with Pester v4 (tested on 4.0.5 pre-release)
+
 ### Version 0.0.1 11th July 2016
 Pushed to PowerShell Gallery
 
