@@ -34,8 +34,11 @@ function FindMismatchedHashtableValue($ActualValue, $ExpectedValue) {
         $actualItem = $ActualValue[$expectedKey]
         if ($null -ne $expectedItemType -and $expectedItemType.name -eq 'Hashtable'){
             $retValue = FindMismatchedHashtableValue $actualItem $expectedItem
+            if($retValue){
+                return $retValue
+            }
         }
-        if (-not ($actualItem -eq $expectedItem)) {
+        elseif (-not ($actualItem -eq $expectedItem)) {
             return "Value differs for key {$expectedKey}. Expected value: {$expectedItem}, actual value: {$actualItem}"
         }
     }
@@ -49,8 +52,11 @@ function FindMismatchedHashtableValue($ActualValue, $ExpectedValue) {
         $actualItemType = $actualItem.getType()
         if ($null -ne $actualItemType -and $actualItemType.name -eq 'Hashtable'){
             $retValue = FindMismatchedHashtableValue $actualItem $expectedItem
+            if($retValue){
+                return $retValue
+            }
         }
-        if (-not ($actualItem -eq $expectedItem)) {
+        elseif (-not ($actualItem -eq $expectedItem)) {
             return "Value differs for key {$actualKey}. Expected value: {$expectedItem}, actual value: {$actualItem}"
         }
     }
