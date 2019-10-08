@@ -30,8 +30,15 @@ function FindMismatchedHashtableValue($ActualValue, $ExpectedValue) {
             return "Expected key: {$expectedKey}, but missing in actual"
         }
         $expectedItem = $ExpectedValue[$expectedKey]
+        $expectedItemType = $expectedItem.getType()
         $actualItem = $ActualValue[$expectedKey]
-        if (-not ($actualItem -eq $expectedItem)) {
+        if ($null -ne $expectedItemType -and $expectedItemType.name -eq 'Hashtable'){
+            $retValue = FindMismatchedHashtableValue $actualItem $expectedItem
+            if($retValue){
+                return $retValue
+            }
+        }
+        elseif (-not ($actualItem -eq $expectedItem)) {
             return "Value differs for key {$expectedKey}. Expected value: {$expectedItem}, actual value: {$actualItem}"
         }
     }
@@ -42,7 +49,14 @@ function FindMismatchedHashtableValue($ActualValue, $ExpectedValue) {
         }
         $expectedItem = $ExpectedValue[$actualKey]
         $actualItem = $ActualValue[$actualKey]
-        if (-not ($actualItem -eq $expectedItem)) {
+        $actualItemType = $actualItem.getType()
+        if ($null -ne $actualItemType -and $actualItemType.name -eq 'Hashtable'){
+            $retValue = FindMismatchedHashtableValue $actualItem $expectedItem
+            if($retValue){
+                return $retValue
+            }
+        }
+        elseif (-not ($actualItem -eq $expectedItem)) {
             return "Value differs for key {$actualKey}. Expected value: {$expectedItem}, actual value: {$actualItem}"
         }
     }

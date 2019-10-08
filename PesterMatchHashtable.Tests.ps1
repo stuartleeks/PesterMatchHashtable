@@ -26,6 +26,9 @@ Describe "PesterMatchHashtable" {
     It "returns true for hashtable with the same contents in different orders" {
         @{"a" = 1; "b" = "test"} | Should MatchHashtable  @{"b" = "test"; "a" = 1}
     }
+    It "return true for matching multi-level hash table" {
+        @{"a" = 1; "multi-level" = @{"b" = "test"}}  | Should MatchHashtable  @{"a" = 1; "multi-level" = @{"b" = "test"}}
+    }
 
     It "returns false if hashtable differ in content" {
         @{"a" = 1; "b" = "test"}  | Should Not MatchHashtable @{"a" = 1; "b" = "different value"}
@@ -35,5 +38,8 @@ Describe "PesterMatchHashtable" {
     }
     It "returns false if hashtable differ in length - input1 longer" {
         @{"a" = 1; "b" = "test"}  | Should Not MatchHashtable  @{"a" = 1}
+    }
+    It "return false if matching multi-level hash table differ in content" {
+        @{"a" = 1; "multi-level" = @{"b" = "test"}}  | Should Not MatchHashtable  @{"a" = 1; "multi-level" = @{"b" = "different value"}}
     }
 }
